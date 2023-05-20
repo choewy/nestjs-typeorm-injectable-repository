@@ -1,7 +1,14 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Item } from './item.entity';
+
+export class UserRelation {
+  @OneToMany(() => Item, (e) => e.user, { cascade: ['insert', 'update'] })
+  @JoinTable()
+  items: Item[];
+}
 
 @Entity()
-export class User {
+export class User extends UserRelation {
   @PrimaryGeneratedColumn({ type: 'bigint', unsigned: true, comment: 'PK' })
   readonly id: number;
 
@@ -13,13 +20,14 @@ export class User {
 }
 
 export class UserCreateEntity extends User {
-  constructor(name: string) {
+  constructor(name: string, items?: Item[]) {
     super();
 
     this.name = name;
+    this.items = items;
   }
 
-  public static of(name: string): User {
-    return new UserCreateEntity(name);
+  public static of(name: string, items: Item[]): User {
+    return new UserCreateEntity(name, items);
   }
 }
