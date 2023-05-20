@@ -1,13 +1,13 @@
 import { Repository } from 'typeorm';
-import { CustomRepository, User, UserCreateEntity } from '@app/core';
+import { CustomRepository, RepositoryProvider, User } from '@app/core';
 
 @CustomRepository(User)
 export class UserRepository extends Repository<User> {
-  async has(): Promise<boolean> {
-    return (await this.count()) > 0;
+  public static get provider() {
+    return RepositoryProvider(UserRepository);
   }
 
-  async init(): Promise<void> {
-    await this.insert(UserCreateEntity.of('choewy'));
+  async has(): Promise<boolean> {
+    return (await this.count()) > 0;
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { UserRepository } from './user.repository';
+import { ItemCreateEntity, UserCreateEntity } from '@app/core';
 
 @Injectable()
 export class UserService implements OnApplicationBootstrap {
@@ -10,6 +11,6 @@ export class UserService implements OnApplicationBootstrap {
       return;
     }
 
-    return this.userRepository.init();
+    await this.userRepository.save(UserCreateEntity.of('choewy', [ItemCreateEntity.of('portion', 10)]));
   }
 }
