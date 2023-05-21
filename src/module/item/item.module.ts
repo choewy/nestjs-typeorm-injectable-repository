@@ -3,7 +3,7 @@ import { ItemService } from './item.service';
 import { ItemRepository } from './item.repository';
 
 @Module({
-  providers: [ItemRepository.provider, ItemService],
-  exports: [ItemRepository.provider, ItemService],
+  providers: [ItemRepository.provide(), ItemService],
+  exports: [ItemRepository.provide(), ItemService],
 })
 export class ItemModule {}
