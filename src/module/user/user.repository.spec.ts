@@ -22,7 +22,7 @@ describe('UserRepository', () => {
     expect(await repository.count()).toBe(0);
   });
 
-  it('User count to be less than 0.', async () => {
+  it('User has flag to be false.', async () => {
     expect(await repository.has()).toBe(false);
   });
 });
