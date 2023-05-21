@@ -11,3 +11,9 @@ export const GlobalConfigModule = ConfigModule.forRoot({
   isGlobal: true,
   load: [envs.server, envs.typeorm],
 });
+
+export const TestConfigModule = ConfigModule.forRoot({
+  envFilePath: Object.values(ConfigPath).map((path) => resolve(path)),
+  isGlobal: true,
+  load: [envs.server, envs.typeormTest],
+});
