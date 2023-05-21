@@ -8,3 +8,10 @@ export const DatabaseModule = TypeOrmModule.forRootAsync({
     return configService.get<TypeOrmModuleOptions>(ConfigKey.TYPEORM);
   },
 });
+
+export const TestDatabaseModule = TypeOrmModule.forRootAsync({
+  inject: [ConfigService],
+  useFactory(configService: ConfigService): TypeOrmModuleOptions {
+    return configService.get<TypeOrmModuleOptions>(ConfigKey.TYPEORM_TEST);
+  },
+});
