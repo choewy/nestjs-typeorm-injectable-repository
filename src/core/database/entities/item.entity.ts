@@ -1,4 +1,13 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 
 export class ItemRelation {
@@ -23,6 +32,12 @@ export class Item extends ItemRelation {
 
   @CreateDateColumn({ type: 'timestamp', comment: 'Create Timestamp' })
   createdAt: number;
+
+  @UpdateDateColumn({ type: 'timestamp', comment: 'Update Timestamp' })
+  updatedAt: number;
+
+  @DeleteDateColumn({ type: 'timestamp', comment: 'Delete Timestamp' })
+  deletedAt: number | null;
 }
 
 export class ItemCreateEntity extends Item {
