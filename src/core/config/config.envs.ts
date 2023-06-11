@@ -5,10 +5,14 @@ import { ConfigKey } from './enums';
 import { ConfigEnvsInterface, ServerConfig } from './types';
 import SnakeNamingStrategy from 'typeorm-naming-strategy';
 import { LogLevel } from 'typeorm';
-import { join } from 'path';
+import { join, resolve } from 'path';
 
 export class ConfigEnvs implements ConfigEnvsInterface {
   private static instance: ConfigEnvs;
+
+  public static makeFilePath(...paths: string[]) {
+    return paths.map((path) => resolve(path));
+  }
 
   public static of() {
     if (!this.instance) {
