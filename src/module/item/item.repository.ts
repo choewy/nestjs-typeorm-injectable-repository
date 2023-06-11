@@ -4,8 +4,14 @@ import { EntityManager, Repository, UpdateResult } from 'typeorm';
 
 @CustomRepository(Item)
 export class ItemRepository extends Repository<Item> {
-  public static provide(): FactoryProvider {
-    return RepositoryProvider(this);
+  private static $provider: FactoryProvider;
+
+  public static get provider(): FactoryProvider {
+    if (!this.$provider) {
+      this.$provider = RepositoryProvider(this);
+    }
+
+    return this.$provider;
   }
 
   async increaseCount(id: number, item: Item, em?: EntityManager): Promise<UpdateResult> {

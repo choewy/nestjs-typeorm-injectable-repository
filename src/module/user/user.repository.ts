@@ -4,8 +4,14 @@ import { FactoryProvider } from '@nestjs/common';
 
 @CustomRepository(User)
 export class UserRepository extends Repository<User> {
-  public static provide(): FactoryProvider {
-    return RepositoryProvider(this);
+  private static $provider: FactoryProvider;
+
+  public static get provider(): FactoryProvider {
+    if (!this.$provider) {
+      this.$provider = RepositoryProvider(this);
+    }
+
+    return this.$provider;
   }
 
   async has(): Promise<boolean> {
