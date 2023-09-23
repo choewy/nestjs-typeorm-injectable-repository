@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-typeorm-custom-repository",
+  "name": "nestjs-typeorm-injectable-repository",
   "version": "0.0.1",
   "description": "",
   "author": "",
