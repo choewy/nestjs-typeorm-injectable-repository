@@ -1,7 +1,7 @@
+import { DataSource } from 'typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserRepository } from '@app/module';
 import { TestConfigModule, TestDatabaseModule } from '@app/core';
-import { DataSource } from 'typeorm';
 
 describe('UserRepository', () => {
   let dataSource: DataSource;
@@ -23,6 +23,10 @@ describe('UserRepository', () => {
 
   it('UserRepository should be defined.', () => {
     expect(repository).toBeDefined();
+  });
+
+  it('UserRepository.has should be defined.', () => {
+    expect(repository.has).toBeDefined();
   });
 
   it('User count to be 0.', async () => {
