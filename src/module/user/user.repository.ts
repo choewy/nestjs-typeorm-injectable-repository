@@ -1,19 +1,7 @@
-import { Repository } from 'typeorm';
-import { CustomRepository, RepositoryProvider, User } from '@app/core';
-import { FactoryProvider } from '@nestjs/common';
+import { IRepository, InjectableRepository, User } from '@app/core';
 
-@CustomRepository(User)
-export class UserRepository extends Repository<User> {
-  private static $provider: FactoryProvider;
-
-  public static get provider(): FactoryProvider {
-    if (!this.$provider) {
-      this.$provider = RepositoryProvider(this);
-    }
-
-    return this.$provider;
-  }
-
+@InjectableRepository(User)
+export class UserRepository extends IRepository<User> {
   async has(): Promise<boolean> {
     return (await this.count()) > 0;
   }

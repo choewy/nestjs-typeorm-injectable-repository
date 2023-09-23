@@ -15,13 +15,13 @@ export class ItemRelation {
   @JoinColumn()
   user: User | null;
 
-  @Column({ type: 'bigint', unsigned: true, comment: 'User PK', nullable: true })
+  @Column({ type: 'int', unsigned: true, comment: 'User PK', nullable: true })
   userId: number | null;
 }
 
 @Entity()
 export class Item extends ItemRelation {
-  @PrimaryGeneratedColumn({ type: 'bigint', unsigned: true, comment: 'PK' })
+  @PrimaryGeneratedColumn({ type: 'int', unsigned: true, comment: 'PK' })
   id: number;
 
   @Column({ type: 'varchar', length: 100, comment: 'Name' })

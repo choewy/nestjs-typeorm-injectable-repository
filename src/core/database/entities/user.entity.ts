@@ -9,7 +9,7 @@ export class UserRelation {
 
 @Entity()
 export class User extends UserRelation {
-  @PrimaryGeneratedColumn({ type: 'bigint', unsigned: true, comment: 'PK' })
+  @PrimaryGeneratedColumn({ type: 'int', unsigned: true, comment: 'PK' })
   readonly id: number;
 
   @Column({ type: 'varchar', length: 100, comment: 'Name' })
