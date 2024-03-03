@@ -19,7 +19,7 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@extensions/*": ["src/extensions/*"],
-      "@domains/*": ["src/domains/*"]
+      "@examples/*": ["src/examples/*"]
     }
   }
 }

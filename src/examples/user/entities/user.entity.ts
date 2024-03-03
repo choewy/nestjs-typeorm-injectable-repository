@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Item } from '@domains/item';
+import { Item } from 'src/examples/item';
 
 @Entity()
 export class User {
