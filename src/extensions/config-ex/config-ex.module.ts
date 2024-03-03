@@ -5,7 +5,7 @@ import { TypeOrmConfigFactory } from './factories';
 
 @Module({})
 export class ConfigExModule {
-  forRoot(): DynamicModule {
+  static forRoot(): DynamicModule {
     return {
       global: true,
       imports: [ConfigModule.forRoot()],
