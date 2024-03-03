@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@extensions/*": ["src/extensions/*"]
+      "@extensions/*": ["src/extensions/*"],
+      "@domains/*": ["src/domains/*"]
     }
   }
 }
