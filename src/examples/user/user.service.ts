@@ -2,12 +2,15 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { v4 } from 'uuid';
 
-import { UserRepository } from './repositories';
+import { UserItemRepository, UserRepository } from './repositories';
 import { UserDto } from './dtos';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly userItemRepository: UserItemRepository,
+  ) {}
 
   async getUsers(): Promise<UserDto[]> {
     const users = await this.userRepository.find();
@@ -16,11 +19,18 @@ export class UserService {
   }
 
   async createUser(): Promise<UserDto> {
-    const user = this.userRepository.create({
-      name: v4(),
-    });
+    return new UserDto(await this.userRepository.createDefault());
+  }
 
-    await this.userRepository.insert(user);
+  async giveItemToUser(id: number) {
+    const user = await this.userRepository.findByIdWithItems(id);
+
+    if (user === null) {
+      throw new NotFoundException('not found user');
+    }
+
+    user.items.push(await this.userItemRepository.createDefault(user.id));
+
     return new UserDto(user);
   }
 
